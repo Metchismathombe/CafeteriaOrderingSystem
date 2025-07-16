@@ -45,3 +45,11 @@ Include screenshots of:
 
 **Note:** This is a demo/internal app, not intended for production use without further security and validation improvements.
 
+## Database
+
+A backup of the SQL Server database (`CafeteriaDatabase.bak`) is included in the `/Database` folder. To restore it:
+
+1. Open SQL Server Management Studio
+2. Right-click "Databases" > Restore Database...
+3. Choose "Device", browse to select the .bak file
+4. Click OK to restore
