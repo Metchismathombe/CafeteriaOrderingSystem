@@ -1,0 +1,21 @@
+﻿@model Restaurant
+
+<h2>Menu for @Model.Name</h2>
+
+@foreach (var item in Model.MenuItems)
+{
+    <div class="card my-3 p-3">
+        <h5>@item.Name - R @item.Price</h5>
+        <p>@item.Description</p>
+        @if (!string.IsNullOrEmpty(item.ImageUrl))
+        {
+            <img src="@item.ImageUrl" alt="@item.Name" style="max-width: 200px;" />
+        }
+
+        <form asp-controller="Orders" asp-action="Create" method="post">
+            <input type="hidden" name="MenuItemId" value="@item.Id" />
+            <input type="number" name="Quantity" value="1" min="1" class="form-control my-2" />
+            <button type="submit" class="btn btn-primary">Order</button>
+        </form>
+    </div>
+}

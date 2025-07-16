@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Order>
+
+<h2>All Orders</h2>
+
+@foreach (var order in Model)
+{
+    <div class="card p-2 my-2">
+        <p><strong>@order.Employee.Name</strong> | Status: @order.Status</p>
+        <form method="post" asp-action="UpdateStatus">
+            <input type="hidden" name="orderId" value="@order.Id" />
+            <select name="newStatus" class="form-control w-25 d-inline">
+                <option>Pending</option>
+                <option>Preparing</option>
+                <option>Delivering</option>
+                <option>Delivered</option>
+            </select>
+            <button type="submit" class="btn btn-sm btn-info">Update</button>
+        </form>
+    </div>
+}

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Restaurant>
+
+<h2>Select a Restaurant</h2>
+
+@foreach (var r in Model)
+{
+    <div class="card my-2 p-3">
+        <h4>@r.Name</h4>
+        <p>@r.LocationDescription</p>
+        <a class="btn btn-success" asp-action="Menu" asp-route-id="@r.Id">View Menu</a>
+    </div>
+}

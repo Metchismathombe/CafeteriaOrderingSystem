@@ -1,0 +1,78 @@
+﻿@model CafeteriaOrderingSystem.Models.Order
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h2 class="mb-0">Order Confirmation</h2>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h4>Order Details</h4>
+                    <p><strong>Order ID:</strong> @Model.Id</p>
+                    <p><strong>Date:</strong> @Model.OrderDate.ToString("f")</p>
+                    <p><strong>Status:</strong> <span class="badge bg-info">@Model.Status</span></p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <h4 class="text-success">Total Amount: R @Model.TotalAmount.ToString("0.00")</h4>
+                    @if (Model.Employee != null)
+                    {
+                        <p><strong>Employee:</strong> @Model.Employee.Name</p>
+                    }
+                </div>
+            </div>
+
+            <h4 class="mb-3">Order Items</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th class="text-end">Quantity</th>
+                            <th class="text-end">Unit Price</th>
+                            <th class="text-end">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderItems)
+                        {
+                            <tr>
+                                <td>@item.MenuItem.Name</td>
+                                <td>@item.MenuItem.Description</td>
+                                <td class="text-end">@item.Quantity</td>
+                                <td class="text-end">R @item.UnitPriceAtTimeOfOrder.ToString("0.00")</td>
+                                <td class="text-end">R @((item.Quantity * item.UnitPriceAtTimeOfOrder).ToString("0.00"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-between">
+                <a asp-action="Restaurants" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Back to Restaurants
+                </a>
+                <button class="btn btn-primary" onclick="window.print()">
+                    <i class="bi bi-printer"></i> Print Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .card {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .badge {
+            font-size: 0.9em;
+            padding: 0.35em 0.65em;
+        }
+    </style>
+}

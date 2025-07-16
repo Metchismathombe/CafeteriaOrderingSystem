@@ -1,0 +1,57 @@
+﻿@model CafeteriaOrderingSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Add New Employee";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Add New Employee</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="EmployeeNumber" class="form-label fw-semibold"></label>
+                            <input asp-for="EmployeeNumber" class="form-control" placeholder="e.g. EMP001" />
+                            <span asp-validation-for="EmployeeNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Balance" class="form-label fw-semibold"></label>
+                            <input asp-for="Balance" class="form-control" placeholder="e.g. 1000.00" />
+                            <span asp-validation-for="Balance" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LastDepositMonth" class="form-label fw-semibold"></label>
+                            <input asp-for="LastDepositMonth" class="form-control" type="date" />
+                            <span asp-validation-for="LastDepositMonth" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                            <button type="submit" class="btn btn-success px-4">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
